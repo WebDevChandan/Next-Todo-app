@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Toaster, toast } from 'react-hot-toast'
-import {useRouter} from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export const Context = createContext({ user: {} });
 
@@ -24,7 +24,6 @@ export const ContextProvider = ({ children }) => {
 }
 
 export const LogooutBtn = () => {
-
     const { user, setUser } = useContext(Context);
 
     const logoutHandler = async () => {
@@ -32,14 +31,12 @@ export const LogooutBtn = () => {
             const res = await fetch("/api/auth/logout");
 
             const data = await res.json();
-
+            
             if (!data.success) return toast.error(data.message);
 
             setUser({});
 
             toast.success(data.message);
-
-            const router = useRouter()
 
         } catch (error) {
             toast.error(error);
@@ -48,7 +45,7 @@ export const LogooutBtn = () => {
 
     return (
         user._id ? (
-            < button className="btn" onClick={logoutHandler} > Logout</button >
+            < button className="btn" onClick={logoutHandler} > Logout </button >
         ) : (
             <Link href={"/login"}>Login</Link>
         )
@@ -69,15 +66,15 @@ export const TodoButton = ({ id, completed }) => {
             const data = await res.json();
 
             if (!data.success) return toast.error(data.message);
-            
+
             toast.success(data.message);
-            
+
             router.refresh();
         } catch (error) {
             toast.error(error);
         }
     }
-   
+
     const updateHandler = async (id) => {
         try {
             const res = await fetch(`/api/task/${id}`, {
@@ -87,9 +84,9 @@ export const TodoButton = ({ id, completed }) => {
             const data = await res.json();
 
             if (!data.success) return toast.error(data.message);
-            
+
             toast.success(data.message);
-            
+
             router.refresh();
         } catch (error) {
             toast.error(error);
@@ -98,7 +95,7 @@ export const TodoButton = ({ id, completed }) => {
 
     return (
         <>
-            <input type="checkbox" checked={completed} onChange={()=>updateHandler(id)} />
+            <input type="checkbox" checked={completed} onChange={() => updateHandler(id)} />
             <button className="btn" onClick={() => deleteHandler(id)}>Delete</button>
         </>
     )

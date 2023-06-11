@@ -13,7 +13,7 @@ const fetchTodo = async (token) => {
 
         const data = await res.json();
 
-        if (!data) return [];
+        if (!data.success) return [];
 
         return data.tasks;
 
