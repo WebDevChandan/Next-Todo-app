@@ -6,11 +6,6 @@ import React, { useContext, useState } from 'react'
 import { redirect } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 
-export const metadata = {
-    title: 'Login Todo App',
-    description: 'This is the Login page of Todo App made by Next.js as a First Next.Js Project',
-}
-
 
 const Page = () => {
     const [email, setEmail] = useState("");

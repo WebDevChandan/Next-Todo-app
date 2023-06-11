@@ -6,10 +6,6 @@ import Link from 'next/link'
 import React, { useContext, useState } from 'react'
 import { toast } from 'react-hot-toast';
 
-export const metadata = {
-    title: 'Register Todo App',
-    description: 'This is the Register page of Todo App made by Next.js as a First Next.Js Project',
-}
 
 const Page = () => {
     const [name, setName] = useState("");
